@@ -28,7 +28,7 @@ export const usersReducer = (state = initialState, action) => {
     case Types.user.GET_ALL_USERS:
       return {
         ...state,
-        allUsersDetails: payload?.data,
+        allUsersDetails: payload,
         totalCount: 18,
         currentPage: 1,
         totalPages: 3,

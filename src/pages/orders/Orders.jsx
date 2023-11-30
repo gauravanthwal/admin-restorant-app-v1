@@ -14,7 +14,7 @@ import {columns} from '../../components/table/tableData/productTableData'
 import AddProductModal from "../../components/modal/AddProductModal";
 import { setAddProductModal } from "../../store/actions/modalAction";
 
-const Products = () => {
+const Orders = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
@@ -154,4 +154,4 @@ const PrevButton = () => {
   );
 };
 
-export default Products;
+export default Orders;

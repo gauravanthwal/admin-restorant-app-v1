@@ -11,6 +11,8 @@ import CreateAdmin from "../../components/modal/CreateAdmin";
 import RemoveAdmin from "../../components/modal/RemoveAdmin";
 import SelectUserModal from "../../components/modal/SelectUserModal";
 import { getAllCourses } from "../../store/actions/courseAction";
+import TableWithHead from "../../components/table/TableWithHead";
+import { columns } from "../../components/table/tableData/userTableData";
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -65,23 +67,20 @@ const Users = () => {
         <div>
           <form className="my-2" onSubmit={handleSearchSubmit}>
             <input
-              className="border border-gray-600 px-2 py-1 outline-none rounded-tl-sm rounded-bl-sm"
+              className="border border-gray-300 px-2 py-2 outline-none rounded-tl-xl rounded-bl-xl"
               type="text"
               placeholder="Search Email or Name"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button className="px-2 py-1 border border-gray-600 hover:bg-green-400 bg-green-300 rounded-tr-sm rounded-br-sm">
+            <button className="px-2 py-2 border text-gray-400 border-gray-300 hover:bg-gray-300 bg-gray-200 rounded-tr-xl rounded-br-xl">
               Search
             </button>
           </form>
         </div>
-        <UsersTable
-          allUsersDetails={allUsersDetails}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          totalPages={totalPages}
-        />
+        {allUsersDetails && allUsersDetails.length > 0 && (
+          <TableWithHead rowData={allUsersDetails} columns={columns} />
+        )}
         <div className="my-2 flex justify-between text-gray-700">
           <div>
             <p>

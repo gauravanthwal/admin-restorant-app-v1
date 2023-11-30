@@ -1,6 +1,9 @@
 import { Types } from "../Types";
 
 const initialState = {
+  addProductModal: false,
+  deleteProductModal: false,
+
   askDeleteCourse: false,
   courseId: "",
 
@@ -14,12 +17,18 @@ const initialState = {
 
   removeAdmin: false,
 
-  selectUser: false
+  selectUser: false,
 };
 
 export const modalReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case Types.modal.ADD_PRODUCT_MODAL:
+      return {
+        ...state,
+        addProductModal: payload,
+      };
+
     case Types.modal.ASK_DELETE_COURSE:
       return {
         ...state,
@@ -59,7 +68,7 @@ export const modalReducer = (state = initialState, action) => {
     case Types.modal.SELECT_USER_MODAL:
       return {
         ...state,
-        selectUser: payload
+        selectUser: payload,
       };
 
     default:

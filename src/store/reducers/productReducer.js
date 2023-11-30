@@ -7,6 +7,8 @@ const initialState = {
   currentPage: 1,
   totalPages: 0,
   pageSize: 10,
+
+  isLoading: false
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -33,15 +35,15 @@ export const productReducer = (state = initialState, action) => {
         currentPage: state.currentPage - 1,
       };
 
-    case Types.payment.PAYMENT_SET_LOADING:
+    case Types.products.SET_PRODUCT_LOADING:
       return {
         ...state,
-        paymentLoading: true,
+        isLoading: true,
       };
-    case Types.payment.PAYMENT_REMOVE_LOADING:
+    case Types.products.REMOVE_PRODUCT_LOADING:
       return {
         ...state,
-        paymentLoading: false,
+        isLoading: false,
       };
 
     default:

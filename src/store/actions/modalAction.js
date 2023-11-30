@@ -1,5 +1,14 @@
 import { Types } from "../Types";
 
+
+export const setAddProductModal = (params) => async (dispatch) => {
+  dispatch({
+    type: Types.modal.ADD_PRODUCT_MODAL,
+    payload: params,
+  });
+};
+
+
 export const setDeleteCourseModal = (params) => async (dispatch) => {
   dispatch({
     type: Types.modal.ASK_DELETE_COURSE,

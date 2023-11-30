@@ -17,11 +17,7 @@ export const getAllProducts = (params) => async (dispatch) => {
   try {
     dispatch(setLoading());
 
-    const res = await axios.get(
-      BASE_URL +
-        `/product/all`,
-      getHeaders()
-    );
+    const res = await axios.get(BASE_URL + `/product/all`, getHeaders());
 
     if (res.status == 200) {
       dispatch(remvoeLoading());
@@ -29,6 +25,22 @@ export const getAllProducts = (params) => async (dispatch) => {
         type: Types.products.GET_ALL_PRODUCTS,
         payload: res?.data,
       });
+    }
+    dispatch(remvoeLoading());
+  } catch (err) {
+    toast.error(err?.response?.data.message);
+    dispatch(remvoeLoading());
+  }
+};
+
+export const addNewProducts = (params) => async (dispatch) => {
+  try {
+    dispatch(setLoading());
+
+    const res = await axios.post(BASE_URL + `/product/new`, params);
+
+    if (res.status == 201) {
+      dispatch(getAllProducts())
     }
     dispatch(remvoeLoading());
   } catch (err) {
@@ -58,12 +70,12 @@ export const prevPagePayment = () => async (dispatch) => {
 
 export const setLoading = () => async (dispatch) => {
   dispatch({
-    type: Types.payment.PAYMENT_SET_LOADING,
+    type: Types.products.SET_PRODUCT_LOADING,
   });
 };
 
 export const remvoeLoading = () => async (dispatch) => {
   dispatch({
-    type: Types.payment.PAYMENT_REMOVE_LOADING,
+    type: Types.products.REMOVE_PRODUCT_LOADING,
   });
 };

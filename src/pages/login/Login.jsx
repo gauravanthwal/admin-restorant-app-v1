@@ -10,14 +10,14 @@ const Login = () => {
 
   const {isAuth} = useSelector((state)=>state.user)
   const [loginForm, setLoginForm] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
   const handleLogin = (e)=>{
     e.preventDefault();
 
-    if(!loginForm.username || !loginForm.password){
+    if(!loginForm.email || !loginForm.password){
       return toast.error("Please enter all fields")
     }
 
@@ -35,18 +35,18 @@ const Login = () => {
         <form className="border my-2 p-2  px-8 py-4 rounded-md bg-gray-50 shadow-lg">
           <h1 className="text-2xl font-semibold text-gray-600 py-4">Log In</h1>
           <div className="mb-3">
-            <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">
-              Username
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
+              Email
             </label>
             <input
-              value={loginForm.username}
+              value={loginForm.email}
               onChange={(e) =>
-                setLoginForm({ ...loginForm, username: e.target.value })
+                setLoginForm({ ...loginForm, email: e.target.value })
               }
-              id="username"
-              type="username"
+              id="email"
+              type="email"
               className="bg-gray-50 border p-2 border-gray-300 text-gray-900 text-sm rounded-lg  block w-full"
-              placeholder="Username"
+              placeholder="Email"
               required
             />
           </div>

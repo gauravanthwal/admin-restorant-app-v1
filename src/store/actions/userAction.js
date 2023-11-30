@@ -56,7 +56,7 @@ export const getAllUsers = (params) => async (dispatch) => {
 
       dispatch({
         type: Types.user.GET_ALL_USERS,
-        payload: res?.data,
+        payload: res?.data?.users,
       });
     }
     dispatch(remvoeLoading());
