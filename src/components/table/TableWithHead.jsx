@@ -10,7 +10,7 @@ const TableWithHead = ({ rowData, columns }) => {
   const [data, setData] = React.useState(() => [...rowData]);
 
   const table = useReactTable({
-    data,
+    data: rowData,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });

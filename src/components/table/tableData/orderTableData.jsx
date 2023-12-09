@@ -2,6 +2,8 @@ import { createColumnHelper } from "@tanstack/react-table";
 
 import { CheckIcon, WrongIcon } from "../../../assets/icons/icons";
 import ViewButton from "../ViewButton";
+import { checkStatus } from "../../../utils/helper";
+import moment from "moment";
 
 const defaultImage =
   "https://static.vecteezy.com/system/resources/thumbnails/001/993/889/small/beautiful-latin-woman-avatar-character-icon-free-vector.jpg";
@@ -42,20 +44,41 @@ export const columns = [
     {
       id: "user._id",
       header: () => "User",
-      cell: (info) => <span>{info.getValue()}</span>,
+      cell: (info) => <Pop text={info.getValue()} />,
     }
   ),
   columnHelper.accessor("user.email", {
     header: () => "Email",
     cell: (info) => info.getValue(),
   }),
+  columnHelper.accessor("createdAt", {
+    header: () => "Date",
+    cell: (info) => (
+      <span>{moment(info.getValue()).format("MMMM Do YYYY, h:mm a")}</span>
+    ),
+  }),
   columnHelper.accessor("order_status", {
     header: () => "Status",
-    cell: (info) => info.getValue(),
+    cell: (info) => (
+      <span
+        className={`px-1 py-[2px] font-semibold text-sm rounded-md text-white block`}
+        style={{ background: checkStatus(info.getValue()) }}
+      >
+        {info.getValue()}
+      </span>
+    ),
   }),
   columnHelper.display({
     id: "action",
     header: "Action",
-    cell: (props) => <ViewButton orderId={props?.row?.original?._id}/>
-  })
+    cell: (props) => <ViewButton orderId={props?.row?.original?._id} />,
+  }),
 ];
+
+const Pop = ({ text }) => {
+  return (
+    <div>
+      <button onMouseOver={() => {}}>{text}</button>
+    </div>
+  );
+};

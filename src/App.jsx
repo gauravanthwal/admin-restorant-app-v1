@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <div className="">
-      <ToastContainer theme="colored" />
+      <ToastContainer theme="colored"/>
       <div className="flex">
         {isAuth && <Sidebar />}
         <div className={`w-full`}>

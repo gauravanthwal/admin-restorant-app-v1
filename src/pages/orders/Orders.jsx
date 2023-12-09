@@ -7,7 +7,7 @@ import {
   prevPagePayment,
 } from "../../store/actions/paymentAction";
 import TableWithHead from "../../components/table/TableWithHead";
-import {columns} from '../../components/table/tableData/orderTableData'
+import { columns } from "../../components/table/tableData/orderTableData";
 import AddProductModal from "../../components/modal/AddProductModal";
 import { setAddProductModal } from "../../store/actions/modalAction";
 import { getAllOrders } from "../../store/actions/ordersAction";
@@ -68,16 +68,16 @@ const Orders = () => {
               Search
             </button>
           </form>
-          <div>
+          {/* <div>
             <button
               onClick={openAddProductModal}
               className="bg-emerald-500 hover:bg-emerald-400 px-4 py-2 rounded-lg text-white"
             >
               Add New Product
             </button>
-          </div>
+          </div> */}
         </div>
-        
+
         {allOrders && allOrders.length > 0 && (
           <TableWithHead rowData={allOrders} columns={columns} />
         )}

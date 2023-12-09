@@ -33,14 +33,40 @@ export const getAllOrders = (params) => async (dispatch) => {
   }
 };
 
-export const addNewProducts = (params) => async (dispatch) => {
+export const setCurrentOrder = (params) => async (dispatch) => {
+  try {
+    dispatch({ type: Types.orders.SET_CURRENT_ORDER, payload: params });
+  } catch (err) {
+    dispatch(remvoeLoading());
+  }
+};
+
+export const removeCurrentOrder = () => async (dispatch) => {
+  try {
+    dispatch({ type: Types.orders.REMOVE_CURRENT_ORDER });
+  } catch (err) {
+    dispatch(remvoeLoading());
+  }
+};
+
+export const updateOrderStatus = (params) => async (dispatch) => {
+  const { orderId, newOrderStatus } = params;
   try {
     dispatch(setLoading());
 
-    const res = await axios.post(BASE_URL + `/product/new`, params);
+    const res = await axios.put(
+      BASE_URL + `/order/updateOrderStatus/${orderId}`,
+      { newOrderStatus },
+      getHeaders()
+    );
 
-    if (res.status == 201) {
-      dispatch(getAllProducts())
+    if (res.status == 200) {
+      dispatch(remvoeLoading());
+      dispatch(getAllOrders());
+      dispatch({
+        type: Types.orders.UPDATE_CURRENT_ORDER,
+        payload: newOrderStatus
+      })
     }
     dispatch(remvoeLoading());
   } catch (err) {

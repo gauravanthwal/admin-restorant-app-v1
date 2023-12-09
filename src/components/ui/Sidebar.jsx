@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   HomeIcons,
   LogoutIcons,
@@ -13,34 +13,39 @@ import { logoutUser } from "../../store/actions/userAction";
 
 const routes = [
   {
-    id: 1,
+    id: 0,
     name: "Home",
     url: "/",
     icon: <HomeIcons />,
   },
   {
-    id: 2,
+    id: 1,
     name: "Products",
     url: "/products",
     icon: <ProductIcons />,
   },
   {
-    id: 3,
+    id: 2,
     name: "Users",
     url: "/users",
     icon: <UserIcons />,
   },
   {
-    id: 4,
+    id: 3,
     name: "Orders",
     url: "/orders",
     icon: <OrderIcons />,
   },
 ];
+
 const SidebarComp = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const [activeLink, setActiveLink] = useState(1);
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const [activeLink, setActiveLink] = useState(
+    routes.findIndex((item) => item.url == location.pathname)
+  );
 
   const { showSideBar } = useSelector((state) => state.config);
 
@@ -49,12 +54,12 @@ const SidebarComp = () => {
     navigate(route.url);
   };
 
-  const logout = () =>{
-    dispatch(logoutUser())
-  }
+  const logout = () => {
+    dispatch(logoutUser());
+  };
   return (
     <div
-      className={`min-h-screen w-[5rem] md:w-[15rem] lg:w-[20rem] xl:w-[22rem] transition-all ease-in  bg-gray-100 p-2 flex-col justify-between ${
+      className={`min-h-screen max-h-screen w-[5rem] md:w-[15rem] lg:w-[20rem] xl:w-[22rem] transition-all ease-in  bg-gray-100 p-2 flex-col justify-between ${
         showSideBar ? "flex" : "hidden"
       }`}
     >
@@ -86,7 +91,10 @@ const SidebarComp = () => {
         </div>
       </div>
       <div className="footer-sidebar">
-        <button className="bg-gray-200 p-2 rounded-md hover:bg-gray-300" onClick={logout}>
+        <button
+          className="bg-gray-200 p-2 rounded-md hover:bg-gray-300"
+          onClick={logout}
+        >
           <LogoutIcons />
         </button>
       </div>

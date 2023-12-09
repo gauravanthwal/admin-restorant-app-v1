@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
+#dialog::backdrop {
+    backdrop-filter: blur(3px);
+}
