@@ -6,20 +6,18 @@ import {
   nextPagePayment,
   prevPagePayment,
 } from "../../store/actions/paymentAction";
-import PaymentTable from "../../components/table/PaymentTable";
-import { getAllProducts } from "../../store/actions/productAction";
-import ProductTable from "../../components/table/ProductTable";
 import TableWithHead from "../../components/table/TableWithHead";
-import {columns} from '../../components/table/tableData/productTableData'
+import {columns} from '../../components/table/tableData/orderTableData'
 import AddProductModal from "../../components/modal/AddProductModal";
 import { setAddProductModal } from "../../store/actions/modalAction";
+import { getAllOrders } from "../../store/actions/ordersAction";
 
 const Orders = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
-  const { pageSize, currentPage, allProducts, totalPages, isLoading } =
-    useSelector((state) => state.product);
+  const { pageSize, currentPage, allOrders, totalPages, isLoading } =
+    useSelector((state) => state.order);
 
   const { addProductModal } = useSelector((state) => state.modal);
 
@@ -49,7 +47,7 @@ const Orders = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getAllOrders());
   }, [currentPage]);
 
   return (
@@ -79,9 +77,9 @@ const Orders = () => {
             </button>
           </div>
         </div>
-
-        {allProducts && allProducts.length > 0 && (
-          <TableWithHead rowData={allProducts} columns={columns} />
+        
+        {allOrders && allOrders.length > 0 && (
+          <TableWithHead rowData={allOrders} columns={columns} />
         )}
         <div className="flex justify-between text-gray-700 mb-8">
           <div>
