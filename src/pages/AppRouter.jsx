@@ -7,7 +7,6 @@ const Login = React.lazy(() => import("./login/Login"));
 const Users = React.lazy(() => import("./users/Users"));
 const Payments = React.lazy(() => import("./payments/Payments"));
 const Home = React.lazy(() => import("./home/Home"));
-const Video = React.lazy(() => import("./videos/Videos"));
 const Contacts = React.lazy(() => import("./contacts/Contacts"));
 const PrivateRoute = React.lazy(() =>
   import("../components/auth/PrivateRoute")
@@ -50,14 +49,14 @@ const AppRouter = () => {
           }
           path="/orders"
         />
-        <Route
+        {/* <Route
           element={
             <PrivateRoute>
               <Video />
             </PrivateRoute>
           }
           path="/videos"
-        />
+        /> */}
         <Route
           element={
             <PrivateRoute>
