@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Products from "./products/Products";
 import Orders from "./orders/Orders";
+import Category from "./category/Category";
 const Login = React.lazy(() => import("./login/Login"));
 const Users = React.lazy(() => import("./users/Users"));
 const Payments = React.lazy(() => import("./payments/Payments"));
@@ -64,6 +65,14 @@ const AppRouter = () => {
             </PrivateRoute>
           }
           path="/contacts"
+        />
+        <Route
+          element={
+            <PrivateRoute>
+              <Category/>
+            </PrivateRoute>
+          }
+          path="/category"
         />
         <Route element={<Login />} path="/login" />
       </Routes>

@@ -2,7 +2,7 @@ import React from "react";
 import { FaUserShield, FaMoneyBillAlt } from "react-icons/fa";
 import { FaShopLock } from "react-icons/fa6";
 import { MdVideoSettings, MdMarkEmailRead } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();

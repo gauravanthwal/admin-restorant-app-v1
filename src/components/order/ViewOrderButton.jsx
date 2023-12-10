@@ -6,7 +6,7 @@ import {
   removeCurrentOrder,
   setCurrentOrder,
 } from "../../store/actions/ordersAction";
-import ViewOrder from "../order/ViewOrder";
+import ViewOrder from "./ViewOrder";
 
 const ViewButton = ({ orderId }) => {
   const dispatch = useDispatch();

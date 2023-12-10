@@ -6,11 +6,9 @@ import {
   nextPagePayment,
   prevPagePayment,
 } from "../../store/actions/paymentAction";
-import PaymentTable from "../../components/table/PaymentTable";
 import { getAllProducts } from "../../store/actions/productAction";
-import ProductTable from "../../components/table/ProductTable";
 import TableWithHead from "../../components/table/TableWithHead";
-import {columns} from '../../components/table/tableData/productTableData'
+import {columns} from '../../components/product/productTableData'
 import AddProductModal from "../../components/modal/AddProductModal";
 import { setAddProductModal } from "../../store/actions/modalAction";
 

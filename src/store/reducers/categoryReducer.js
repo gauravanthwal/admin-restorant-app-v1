@@ -1,8 +1,8 @@
 import { Types } from "../Types";
 
 const initialState = {
-  allProducts: [],
-  currentProduct: {},
+  allCategories: [],
+  currentCategory: {},
   productLoading: false,
   totalCount: 0,
   currentPage: 1,
@@ -12,34 +12,34 @@ const initialState = {
   isLoading: false,
 };
 
-export const productReducer = (state = initialState, action) => {
+export const categoryReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case Types.products.GET_ALL_PRODUCTS:
+    case Types.category.GET_ALL_CATEGORY:
       return {
         ...state,
-        allProducts: payload?.products,
+        allCategories: payload?.categories,
         totalCount: 1,
         currentPage: 1,
         totalPages: 1,
       };
 
-    case Types.products.SET_CURRENT_PRODUCT:
+    case Types.category.SET_CURRENT_CATEGORY:
       return {
         ...state,
-        currentProduct: state.allProducts.find((item) => item._id == payload),
-      };
-      
-    case Types.products.REMOVE_CURRENT_PRODUCT:
-      return {
-        ...state,
-        currentProduct: {},
+        currentCategory: state.allCategories.find((cat) => cat._id == payload),
       };
 
-    case Types.payment.NEXT_PAGE_PAYMENT:
+    case Types.category.REMOVE_CURRENT_CATEGORY:
       return {
         ...state,
-        currentPage: state.currentPage + 1,
+        currentCategory: {},
+      };
+
+    case Types.orders.UPDATE_CURRENT_ORDER:
+      return {
+        ...state,
+        currentOrder: { ...state.currentOrder, order_status: payload },
       };
 
     case Types.payment.PREV_PAGE_PAYMENT:

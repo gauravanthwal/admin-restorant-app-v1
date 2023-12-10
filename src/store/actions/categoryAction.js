@@ -13,17 +13,16 @@ export const getHeaders = () => {
   };
 };
 
-// GET ALL PRODUCTS
-export const getAllProducts = (params) => async (dispatch) => {
+export const getAllCategories = (params) => async (dispatch) => {
   try {
     dispatch(setLoading());
 
-    const res = await axios.get(BASE_URL + `/product/all`, getHeaders());
+    const res = await axios.get(BASE_URL + `/category/all`, getHeaders());
 
     if (res.status == 200) {
       dispatch(remvoeLoading());
       dispatch({
-        type: Types.products.GET_ALL_PRODUCTS,
+        type: Types.category.GET_ALL_CATEGORY,
         payload: res?.data,
       });
     }
@@ -34,15 +33,19 @@ export const getAllProducts = (params) => async (dispatch) => {
   }
 };
 
-// ADD NEW PRODUCTS
-export const addNewProducts = (params) => async (dispatch) => {
+export const createNewCategories = (params) => async (dispatch) => {
   try {
     dispatch(setLoading());
 
-    const res = await axios.post(BASE_URL + `/product/new`, params, getHeaders());
+    const res = await axios.post(
+      BASE_URL + `/category/newCategory`,
+      params,
+      getHeaders()
+    );
 
     if (res.status == 201) {
-      dispatch(getAllProducts());
+      dispatch(remvoeLoading());
+      dispatch(getAllCategories());
     }
     dispatch(remvoeLoading());
   } catch (err) {
@@ -51,19 +54,19 @@ export const addNewProducts = (params) => async (dispatch) => {
   }
 };
 
-// UPDATE PRODUCT BY ID
-export const updateProductById = (productId, params) => async (dispatch) => {
+export const updateCategoryById = (catId, params) => async (dispatch) => {
   try {
     dispatch(setLoading());
 
     const res = await axios.put(
-      BASE_URL + `/product/updateProductById/${productId}`,
-      { ...params },
+      BASE_URL + `/category/updateCategoryById/${catId}`,
+      params,
       getHeaders()
     );
 
     if (res.status == 200) {
-      dispatch(getAllProducts());
+      dispatch(remvoeLoading());
+      dispatch(getAllCategories());
     }
     dispatch(remvoeLoading());
   } catch (err) {
@@ -72,18 +75,18 @@ export const updateProductById = (productId, params) => async (dispatch) => {
   }
 };
 
-// DELETE PRODUCT BY ID
-export const deleteProductById = (productId) => async (dispatch) => {
+export const deleteCategoryById = (catId) => async (dispatch) => {
   try {
     dispatch(setLoading());
 
     const res = await axios.delete(
-      BASE_URL + `/product/deleteProductById/${productId}`,
+      BASE_URL + `/category/deleteCategoryById/${catId}`,
       getHeaders()
     );
 
     if (res.status == 200) {
-      dispatch(getAllProducts());
+      dispatch(remvoeLoading());
+      dispatch(getAllCategories());
     }
     dispatch(remvoeLoading());
   } catch (err) {
@@ -92,14 +95,20 @@ export const deleteProductById = (productId) => async (dispatch) => {
   }
 };
 
-// SET CURRENT PRODUCT
-export const setCurrentProduct = (params) => async (dispatch) => {
-  dispatch({ type: Types.products.SET_CURRENT_PRODUCT, payload: params });
+export const setCurrentCategory = (params) => async (dispatch) => {
+  try {
+    dispatch({ type: Types.category.SET_CURRENT_CATEGORY, payload: params });
+  } catch (err) {
+    dispatch(remvoeLoading());
+  }
 };
 
-// REMOVE CURRENT PRODUCT
-export const removeCurrentProduct = () => async (dispatch) => {
-  dispatch({ type: Types.products.REMOVE_CURRENT_PRODUCT });
+export const removeCurrentCategory = () => async (dispatch) => {
+  try {
+    dispatch({ type: Types.category.REMOVE_CURRENT_CATEGORY });
+  } catch (err) {
+    dispatch(remvoeLoading());
+  }
 };
 
 export const nextPagePayment = () => async (dispatch) => {

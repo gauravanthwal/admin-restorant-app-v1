@@ -12,7 +12,7 @@ import RemoveAdmin from "../../components/modal/RemoveAdmin";
 import SelectUserModal from "../../components/modal/SelectUserModal";
 import { getAllCourses } from "../../store/actions/courseAction";
 import TableWithHead from "../../components/table/TableWithHead";
-import { columns } from "../../components/table/tableData/userTableData";
+import { columns } from "../../components/users/userTableData";
 
 const Users = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import {
   createColumnHelper
 } from "@tanstack/react-table";
 
-import { CheckIcon, WrongIcon } from "../../../assets/icons/icons";
+import { CheckIcon, WrongIcon } from "../../assets/icons/icons";
 
 const defaultImage =
   "https://static.vecteezy.com/system/resources/thumbnails/001/993/889/small/beautiful-latin-woman-avatar-character-icon-free-vector.jpg";

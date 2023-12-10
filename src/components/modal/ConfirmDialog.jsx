@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 
-const Dialog = ({ title, children, afterCloseCallback }) => {
-  const modalRef = useRef(null);
+const ConfirmDialog = ({ title, children, afterCloseCallback }) => {
+  const confirmModalRef = useRef(null);
 
   const closeModal = () => {
-    modalRef?.current?.close();
+    confirmModalRef?.current?.close();
 
     if (afterCloseCallback) {
       afterCloseCallback();
@@ -12,13 +12,13 @@ const Dialog = ({ title, children, afterCloseCallback }) => {
   };
   return (
     <dialog
-      id="dialog"
-      ref={modalRef}
-      className="bg-white p-4 rounded-md min-w-[700px] max-w-[900px] min-h-[300px]"
+      id="confirm-dialog"
+      ref={confirmModalRef}
+      className="bg-white p-4 rounded-md min-w-[400px] max-w-[900px] min-h-[200px]"
     >
       {/* Header */}
       <div className="border-b flex justify-between  py-2 mb-2">
-        <h1 className="text-gray-600 font-bold text-xl flex-1 text-center ">{title}</h1>
+        <h1 className="text-gray-700 font-semibold">{title}</h1>
         <button
           onClick={closeModal}
           className="text-gray-600 hover:text-gray-800 rounded-sm"
@@ -48,4 +48,4 @@ const XIcon = (
   </svg>
 );
 
-export default Dialog;
+export default ConfirmDialog;

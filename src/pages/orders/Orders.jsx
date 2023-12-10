@@ -7,7 +7,7 @@ import {
   prevPagePayment,
 } from "../../store/actions/paymentAction";
 import TableWithHead from "../../components/table/TableWithHead";
-import { columns } from "../../components/table/tableData/orderTableData";
+import { columns } from "../../components/order/orderTableData";
 import AddProductModal from "../../components/modal/AddProductModal";
 import { setAddProductModal } from "../../store/actions/modalAction";
 import { getAllOrders } from "../../store/actions/ordersAction";

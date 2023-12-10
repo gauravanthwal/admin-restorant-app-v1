@@ -7,6 +7,7 @@ import { paymentReducer } from "./paymentReducer";
 import { productReducer } from "./productReducer";
 import { configReducer } from "./configReducer";
 import { orderReducer } from "./orderReducer";
+import { categoryReducer } from "./categoryReducer";
 
 export const rootReducer = combineReducers({
   user: usersReducer,
@@ -16,7 +17,8 @@ export const rootReducer = combineReducers({
   payment: paymentReducer,
   product: productReducer,
   config: configReducer,
-  order: orderReducer
+  order: orderReducer,
+  category: categoryReducer
   //   alert: alertReducer,
   //   blog: blogReducer,
 });

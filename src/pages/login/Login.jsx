@@ -32,10 +32,10 @@ const Login = () => {
   return (
     <section className="h-screen flex justify-center">
       <div className="mt-10 md:min-w-[500px] min-w-full">
-        <form className="border my-2 p-2  px-8 py-4 rounded-md bg-gray-50 shadow-lg">
-          <h1 className="text-2xl font-semibold text-gray-600 py-4">Log In</h1>
+        <form className="border my-2 p-2  px-8 py-4 rounded-md  shadow-lg">
+          <h1 className="text-2xl font-semibold text-gray-600 py-4"></h1>
           <div className="mb-3">
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
+            <label  htmlFor="email" className="block mb-2 font-medium text-gray-700">
               Email
             </label>
             <input
@@ -45,13 +45,13 @@ const Login = () => {
               }
               id="email"
               type="email"
-              className="bg-gray-50 border p-2 border-gray-300 text-gray-900 text-sm rounded-lg  block w-full"
+              className="bg-gray-50 border px-4 py-3 border-gray-300 text-gray-900 rounded-lg  block w-full"
               placeholder="Email"
               required
             />
           </div>
           <div className="mb-3">
-            <label className="block mb-2 text-sm font-medium text-gray-900">
+            <label className="block mb-2 font-medium text-gray-700">
               Password
             </label>
             <input
@@ -60,12 +60,12 @@ const Login = () => {
               }
               value={loginForm.password}
               type="password"
-              className="bg-gray-50 border p-2 border-gray-300 text-gray-900 text-sm rounded-lg  block w-full"
+              className="bg-gray-50 border px-4 py-3 border-gray-300 text-gray-900 rounded-lg  block w-full"
               placeholder="Password"
               required
             />
           </div>
-          <button onClick={handleLogin} className="px-8 py-2 my-2 rounded-lg bg-gradient-to-b to-green-400 from-green-500 hover:opacity-90">
+          <button onClick={handleLogin} className="px-8 py-3 my-2 mb-6 w-full text-lg hover:text-white transition-all  font-semibold rounded-lg bg-gradient-to-b to-rose-400 from-rose-500 hover:opacity-90">
             Login
           </button>
         </form>

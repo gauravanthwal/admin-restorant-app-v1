@@ -1,13 +1,11 @@
 import { createColumnHelper } from "@tanstack/react-table";
 
-import { CheckIcon, WrongIcon } from "../../../assets/icons/icons";
-import ViewButton from "../ViewButton";
-import { checkStatus } from "../../../utils/helper";
+import ViewOrderButton from "./ViewOrderButton";
+import { checkStatus } from "../../utils/helper";
 import moment from "moment";
 
 const defaultImage =
-  "https://static.vecteezy.com/system/resources/thumbnails/001/993/889/small/beautiful-latin-woman-avatar-character-icon-free-vector.jpg";
-
+  "https://www.yiwubazaar.com/resources/assets/images/default-product.jpg";
 const columnHelper = createColumnHelper();
 
 export const columns = [
@@ -20,16 +18,18 @@ export const columns = [
     cell: (tableProps) => (
       <div>
         <img
-          src={tableProps?.row?.original?.product.product_photo || defaultImage}
+          src={
+            tableProps?.row?.original?.product?.product_photo || defaultImage
+          }
           className="w-[50px] h-[50px] rounded-full"
         />
       </div>
     ),
   }),
-  columnHelper.accessor((row) => row.product.product_name, {
+  columnHelper.accessor((row) => row?.product?.product_name, {
     id: "product.product_name",
-    cell: (info) => <span>{info.getValue()}</span>,
     header: () => <span>Product</span>,
+    cell: (info) => <span>{info.renderValue() ? info.renderValue() : "NA"}</span>,
   }),
   columnHelper.accessor("quantity", {
     header: () => "Qty",
@@ -37,7 +37,8 @@ export const columns = [
   }),
   columnHelper.accessor("product.price", {
     header: () => "Price",
-    cell: (info) => `$${info.getValue().toFixed(2)}`,
+    cell: (info) =>
+      `${info.renderValue() ? "$ " + info.renderValue()?.toFixed(2) : "NA"}`,
   }),
   columnHelper.accessor(
     (row) => `${row.user.first_name} ${row.user.last_name}`,
@@ -71,7 +72,7 @@ export const columns = [
   columnHelper.display({
     id: "action",
     header: "Action",
-    cell: (props) => <ViewButton orderId={props?.row?.original?._id} />,
+    cell: (props) => <ViewOrderButton orderId={props?.row?.original?._id} />,
   }),
 ];
 
