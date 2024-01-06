@@ -11,6 +11,7 @@ import TableWithHead from "../../components/table/TableWithHead";
 import {columns} from '../../components/product/productTableData'
 import AddProductModal from "../../components/modal/AddProductModal";
 import { setAddProductModal } from "../../store/actions/modalAction";
+import { getAllCategories } from "../../store/actions/categoryAction";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(getAllCategories())
   }, [currentPage]);
 
   return (

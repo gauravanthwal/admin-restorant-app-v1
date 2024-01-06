@@ -111,6 +111,7 @@ export const removeCurrentCategory = () => async (dispatch) => {
   }
 };
 
+///////////////////////////////////////
 export const nextPagePayment = () => async (dispatch) => {
   try {
     dispatch({

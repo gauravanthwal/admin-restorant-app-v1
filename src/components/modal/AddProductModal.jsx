@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAddProductModal } from "../../store/actions/modalAction";
 import { addNewProducts } from "../../store/actions/productAction";
+import { toast } from "react-toastify";
 
 const AddProductModal = () => {
   const dispatch = useDispatch();
@@ -10,17 +11,28 @@ const AddProductModal = () => {
     pName: "",
     pPrice: "",
     pImage: "",
+    pCategory: "",
   });
-  const { pName, pImage, pPrice } = productForm;
+  const { pName, pImage, pPrice, pCategory } = productForm;
+
+  const { allCategories } = useSelector((state) => state.category);
 
   const handleAddProduct = () => {
+    if (pCategory == "0") {
+      toast.warn("Select valid category!");
+      return;
+    }
     // add product here
-    if (!pImage || !pName || !pPrice) return;
+    if (!pImage || !pName || !pPrice || !pCategory) {
+      toast.warn("All fields are required!");
+      return;
+    }
 
     const productPayload = {
       product_name: pName,
       price: pPrice,
       product_photo: pImage,
+      product_category: pCategory,
     };
 
     dispatch(addNewProducts(productPayload));
@@ -71,6 +83,28 @@ const AddProductModal = () => {
               placeholder="Price ($)"
               required
             />
+          </div>
+          <div className="mb-3">
+            <label className="block mb-2 text-sm font-medium text-gray-900">
+              Category
+            </label>
+            {allCategories && allCategories.length > 0 && (
+              <select
+                name="cat"
+                id="cat"
+                className="p-2 border rounded-lg"
+                onChange={(e) =>
+                  setProductForm({ ...productForm, pCategory: e.target.value })
+                }
+              >
+                <option value="0">Select category</option>
+                {allCategories.map((cat, i) => (
+                  <option className="" key={cat._id} value={cat._id}>
+                    {i + 1}. {cat.category_name}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
           <div className="mb-3">
             <label className="block mb-2 text-sm font-medium text-gray-900">

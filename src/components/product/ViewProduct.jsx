@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProductById } from "../../store/actions/productAction";
+import { toast } from "react-toastify";
 
 const ViewProduct = ({ cancelUpdate }) => {
   const dispatch = useDispatch();
   const { currentProduct } = useSelector((state) => state.product);
+  const { allCategories } = useSelector((state) => state.category);
 
   const [productForm, setProductForm] = useState({
     product_name: currentProduct?.product_name,
     price: currentProduct?.price,
     product_photo: currentProduct?.product_photo,
+    product_category: "NA",
   });
 
+  // Update product details
   const updateProduct = () => {
-    if(!productForm.product_name || !productForm.price){
-        return
+    if (productForm.product_category == "0") {
+      toast.warn("Select valid category");
+      return;
+    }
+    if (!productForm.product_name || !productForm.price) {
+      toast.warn("All fields are required!");
+      return;
     }
     dispatch(updateProductById(currentProduct?._id, productForm));
+    // CLOSE MODAL
+    cancelUpdate();
   };
 
   useEffect(() => {
@@ -100,6 +111,51 @@ const ViewProduct = ({ cancelUpdate }) => {
                     })
                   }
                 />
+              </div>
+            </div>
+            <div className="product">
+              <label className="text-gray-500" htmlFor="">
+                Product Category
+              </label>
+              <div className="flex-col w-full items-center gap-4 bg-gray-100 rounded-lg p-1">
+                <div>
+                  <div className="flex items-center gap-2 my-2 bg-gray-200 p-1 rounded-lg">
+                    {currentProduct?.product_category?.category_photo && (
+                      <img
+                        src={currentProduct.product_category.category_photo}
+                        alt={currentProduct.product_category.category_name}
+                        className="w-[50px] h-[50px] rounded-full border-4"
+                      />
+                    )}
+                    {currentProduct.product_category && (
+                      <p className="font-bold">
+                        {currentProduct.product_category.category_name}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  {allCategories && allCategories.length > 0 && (
+                    <select
+                      name="cat"
+                      id="cat"
+                      className="p-2 border rounded-lg"
+                      onChange={(e) =>
+                        setProductForm({
+                          ...productForm,
+                          product_category: e.target.value,
+                        })
+                      }
+                    >
+                      <option value="0">Select category</option>
+                      {allCategories.map((cat, i) => (
+                        <option key={cat._id} value={cat._id}>
+                          {i + 1}. {cat.category_name}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </div>
               </div>
             </div>
             <div className="product mx-auto">
