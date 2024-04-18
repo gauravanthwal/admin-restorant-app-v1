@@ -1,13 +1,13 @@
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import Products from "./products/Products";
-import Orders from "./orders/Orders";
-import Category from "./category/Category";
-const Login = React.lazy(() => import("./login/Login"));
-const Users = React.lazy(() => import("./users/Users"));
-const Payments = React.lazy(() => import("./payments/Payments"));
-const Home = React.lazy(() => import("./home/Home"));
-const Contacts = React.lazy(() => import("./contacts/Contacts"));
+import Products from "../pages/products/Products";
+import Orders from "../pages/orders/Orders";
+import Category from "../pages/category/Category";
+const Login = React.lazy(() => import("../pages/login/Login"));
+const Users = React.lazy(() => import("../pages/users/Users"));
+const Payments = React.lazy(() => import("../pages/payments/Payments"));
+const Home = React.lazy(() => import("../pages/home/Home"));
+const Contacts = React.lazy(() => import("../pages/contacts/Contacts"));
 const PrivateRoute = React.lazy(() =>
   import("../components/auth/PrivateRoute")
 );

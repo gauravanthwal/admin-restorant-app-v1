@@ -75,7 +75,7 @@ const SidebarComp = () => {
   }, [location]);
   return (
     <div
-      className={`min-h-screen max-h-screen w-[5rem] md:w-[15rem] lg:w-[20rem] xl:w-[22rem] transition-all ease-in  bg-gray-100 p-2 flex-col justify-between ${
+      className={`min-h-screen max-h-screen max-w-[5rem] md:max-w-[15rem] md:min-w-[15rem] transition-all ease-in  bg-gray-100 p-2 flex-col justify-between ${
         showSideBar ? "flex" : "hidden"
       }`}
     >

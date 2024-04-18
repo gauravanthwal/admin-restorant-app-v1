@@ -7,21 +7,19 @@ import {
 } from "@tanstack/react-table";
 
 const TableWithHead = ({ rowData, columns }) => {
-  const [data, setData] = React.useState(() => [...rowData]);
-
   const table = useReactTable({
     data: rowData,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
   return (
-    <div className="p-2 overflow-x-scroll">
-      <table className="w-full text-left rtl:text-right">
-        <thead className="text-gray-700 uppercase bg-gray-50 p-4">
+    <div className={styles.parent}>
+      <table className={styles.tableStyle}>
+        <thead className={styles.tableHeadStyle}>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="">
+            <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className="p-4">
+                <th key={header.id} className={styles.tableHeadingGap}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -35,9 +33,9 @@ const TableWithHead = ({ rowData, columns }) => {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="odd:bg-white even:bg-gray-50 border-b">
+            <tr key={row.id} className={styles.tableRowStyle}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="p-4">
+                <td key={cell.id} className={styles.tableHeadingGap}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -50,4 +48,11 @@ const TableWithHead = ({ rowData, columns }) => {
   );
 };
 
+const styles = {
+  parentDiv: "p-2 overflow-x-scroll",
+  tableStyle: "w-full text-left rtl:text-right",
+  tableHeadStyle: "text-gray-700 uppercase bg-gray-50 p-4",
+  tableRowStyle: "odd:bg-white even:bg-gray-50 last:border-b",
+  tableHeadingGap: "p-4",
+};
 export default TableWithHead;

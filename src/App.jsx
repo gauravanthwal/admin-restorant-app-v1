@@ -1,6 +1,6 @@
 // import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect } from "react";
-import AppRouter from "./pages/AppRouter";
+import AppRouter from "./navigation/AppRouter";
 import Navbar from "./components/ui/Navbar";
 import Sidebar from "./components/ui/Sidebar";
 import { ToastContainer } from "react-toastify";
